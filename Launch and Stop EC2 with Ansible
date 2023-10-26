@@ -1,0 +1,18 @@
+
+#####Launch and EC2 instance with Ansible code#####
+
+
+create vim file: vim filename.yml   
+	:w is save
+	:wq is save and quit vim editor to return to CL
+	:set nu = set numbering 
+
+to check syntax: ansible-playbook --syntax-check new.yml  #replace new.yml with file name
+
+to perform a check or 'dry run': ansible-playbook -C new.yml #replace new.yml with file name
+
+to run: ansible-playbook  new.yml   #repalce new.yml with playbook name
+
+
+//
+
