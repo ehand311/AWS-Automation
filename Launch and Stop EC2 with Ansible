@@ -16,3 +16,24 @@ to run: ansible-playbook  new.yml   #repalce new.yml with playbook name
 
 //
 
+// ###stop instance##
+---
+---
+---
+- name: Stop EC2 Instance
+  hosts: localhost
+  gather_facts: False
+  environment:
+    AWS_REGION: ap-south-1  # Replace with the actual AWS region
+
+  tasks:
+    - name: Stop EC2 Instance
+      community.aws.ec2_instance:
+        instance_ids:
+          - i-0200f54f82e197983  # Replace with your instance ID
+        state: stopped  # This stops the EC2 instance
+      register: stopped_ec2
+
+    - name: Print Stopped EC2 Instance Information
+      debug:
+        var: stopped_ec2.instances
