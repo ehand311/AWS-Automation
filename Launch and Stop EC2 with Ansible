@@ -16,7 +16,35 @@ to run: ansible-playbook  new.yml   #repalce new.yml with playbook name
 
 //
 
-// ###stop instance##
+#Launch EC2 Instace 
+---
+- name: Launch EC2 Instance
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+    - name: Create EC2 Instance
+      community.aws.ec2_instance:
+        instance_type: t2.micro
+        image_id: ami-008b85aa3ff5c1b02  #replace with ami id
+        key_name: eric  #replace with key pair
+        region: ap-south-1  #replace with region
+        count: 1
+        wait: yes
+      register: ec2
+
+    - name: Set Python Interpreter for EC2 Task
+      set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+
+    - name: Print EC2 Instance Information
+      debug:
+        var: ec2.instances
+
+
+// 
+
+###stop instance##
 ---
 ---
 ---
